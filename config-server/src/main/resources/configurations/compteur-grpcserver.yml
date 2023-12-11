@@ -1,0 +1,41 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+server:
+  port: 8012
+spring:
+  application:
+    name: compteur-grpcserver
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/compteur_service?createDatabaseIfNotExist=true
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+grpc:
+  server:
+    port: 9986
+#application:
+ # config:
+  #  district-url: http://localhost:8222/api/v1/districts
+   # region-url: http://localhost:8222/api/v1/regions
+
+  client:
+    localService:
+      address : static://localhost:9987
+      negotiation-type: plaintext
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

@@ -1,0 +1,55 @@
+syntax="proto3";
+option java_package="com.service.localgrpcserver.stub";
+service TypeLocalService {
+  rpc getAllTypeLocals(GetAllTypeLocalsRequest) returns (GetAllTypeLocalsResponse);
+  rpc getTypeLocalById(GetTypeLocalByIdRequest) returns (GetTypeLocalByIdResponse);
+  rpc saveTypeLocal(SaveTypeLocalRequest) returns (SaveTypeLocalResponse);
+  rpc updateTypeLocal(UpdateTypeLocalRequest) returns (UpdateTypeLocalResponse);
+  rpc DeleteTypeLocal(DeleteTypeLocalRequest) returns (DeleteTypeLocalResponse);
+}
+
+message TypeLocal {
+
+  int64 id=1;
+  string designation=2;
+
+}
+
+
+message GetAllTypeLocalsRequest{}
+message GetAllTypeLocalsResponse{
+  repeated TypeLocal typeLocal=1;
+}
+
+
+
+message GetTypeLocalByIdRequest{
+  int64 id=1;
+}
+message GetTypeLocalByIdResponse{
+  TypeLocal typeLocal=1;
+}
+
+message SaveTypeLocalRequest{
+  string designation=1;
+}
+
+
+message SaveTypeLocalResponse{
+  TypeLocal typeLocal=1;
+}
+
+message UpdateTypeLocalRequest {
+  TypeLocal typeLocal=1;
+}
+
+message UpdateTypeLocalResponse {
+  TypeLocal typeLocal=1;
+}
+
+message DeleteTypeLocalRequest {
+  int64 id = 1;
+}
+
+message DeleteTypeLocalResponse {
+}

@@ -1,0 +1,83 @@
+syntax="proto3";
+option java_package="com.service.compteurgrpcclient.stub";
+service CompteurService {
+  rpc getAllCompteurs(GetAllCompteursRequest) returns (GetAllCompteursResponse);
+  rpc getCompteursByLocal(GetCompteursByLocalRequest) returns (GetCompteursByLocalResponse);
+  rpc getCompteurById(GetCompteurByIdRequest) returns (GetCompteurByIdResponse);
+  rpc saveCompteur(SaveCompteurRequest) returns (SaveCompteurResponse);
+  rpc updateCompteur(UpdateCompteurRequest) returns (UpdateCompteurResponse);
+  rpc DeleteCompteur(DeleteCompteurRequest) returns (DeleteCompteurResponse);
+}
+
+message Compteur {
+
+  int64 id=1;
+  string refCompteur=2;
+  string refContrat=3;
+  double maxConsommation=4;
+  string dateInstallation=5;
+  bool etatCompteur=6;
+  string image=7;
+  int64 localID=8;
+  UniteMesure uniteMesure=9;
+
+
+}
+enum UniteMesure {
+  metreCube = 0;
+  wattsHeure = 1;
+  kiloWatt = 2;
+}
+
+message GetAllCompteursRequest{}
+message GetAllCompteursResponse{
+  repeated Compteur compteurs=1;
+}
+
+message GetCompteursByLocalRequest{
+  int64 localID=1;
+}
+message GetCompteursByLocalResponse{
+  repeated Compteur compteurs=1;
+}
+
+
+
+message GetCompteurByIdRequest{
+  int64 id=1;
+}
+message GetCompteurByIdResponse{
+  Compteur compteur=1;
+}
+
+message SaveCompteurRequest{
+
+  string refCompteur=1;
+  string refContrat=2;
+  double maxConsommation=3;
+  string dateInstallation=4;
+  bool etatCompteur=5;
+  string image=6;
+  int64 localID=7;
+  UniteMesure uniteMesure=8;
+}
+
+
+message SaveCompteurResponse{
+  Compteur compteur=1;
+}
+
+message UpdateCompteurRequest {
+  Compteur compteur=1;
+}
+
+message UpdateCompteurResponse {
+  Compteur compteur=1;
+}
+
+message DeleteCompteurRequest {
+  int64 id = 1;
+}
+
+message DeleteCompteurResponse {
+}

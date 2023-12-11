@@ -1,0 +1,40 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+server:
+  port: 8010
+spring:
+  application:
+    name: local-grpc-server
+  datasource:
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/schools_service?createDatabaseIfNotExist=true
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/local_db
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    #database: mysql
+    #database-platform: org.hibernate.dialect.MySQLDialect
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+grpc:
+  server:
+    port: 9987
+#application:
+ # config:
+  #  district-url: http://localhost:8222/api/v1/districts
+   # region-url: http://localhost:8222/api/v1/regions
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

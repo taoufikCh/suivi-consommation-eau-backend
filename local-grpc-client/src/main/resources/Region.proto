@@ -1,0 +1,70 @@
+syntax="proto3";
+import "District.proto";
+option java_package="com.service.localgrpcclient.stub";
+service RegionService {
+  rpc getAllRegions(GetAllRegionsRequest) returns (GetAllRegionsResponse);
+  rpc getRegionsByDistrict(GetRegionsByDistrictRequest) returns (GetRegionsByDistrictResponse);
+  rpc getRegionById(GetRegionByIdRequest) returns (GetRegionByIdResponse);
+  rpc saveRegion(SaveRegionRequest) returns (SaveRegionResponse);
+  rpc updateRegion(UpdateRegionRequest) returns (UpdateRegionResponse);
+  rpc deleteRegion(DeleteRegionRequest) returns (DeleteRegionResponse);
+}
+
+message Region {
+  int64 id=1;
+  string code=2;
+  string libille=3;
+  District district=4;
+
+}
+
+message GetAllRegionsRequest{}
+message GetAllRegionsResponse{
+  repeated Region regions=1;
+}
+
+message GetRegionsByDistrictRequest{
+  District district=1;
+}
+message GetRegionsByDistrictResponse{
+  repeated Region regions=1;
+}
+
+
+message GetRegionByIdRequest{
+  int64 id=1;
+}
+message GetRegionByIdResponse{
+  Region region=1;
+}
+
+message SaveRegionRequest{
+  string code=1;
+  string libille=2;
+  District district=3;
+}
+
+message RegionRequest {
+  string code=1;
+  string libille=2;
+  District district=3;
+}
+
+message SaveRegionResponse{
+  Region region=1;
+}
+
+message UpdateRegionRequest {
+  Region region=1;
+}
+
+message UpdateRegionResponse {
+  Region region=1;
+}
+
+message DeleteRegionRequest {
+  int64 id = 1;
+}
+
+message DeleteRegionResponse {
+}

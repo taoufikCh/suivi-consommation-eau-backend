@@ -1,0 +1,18 @@
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        #git:
+        #  uri: http://github.com/taoufikCh/config-service-repo
+         # default-label: main
+          #clone-on-start: true
+        native:
+          search-locations: classpath:/configurations
+

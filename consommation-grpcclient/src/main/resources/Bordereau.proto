@@ -1,0 +1,75 @@
+syntax="proto3";
+
+option java_package="com.service.consommationgrpcclient.stub";
+
+//import "Consommation.proto";
+service BordereauService {
+  rpc getAllBordereaus(GetAllBordereauxRequest) returns (GetAllBordereauxResponse);
+  rpc getBordereauById(GetBordereauByIdRequest) returns (GetBordereauByIdResponse);
+  rpc saveBordereau(SaveBordereauRequest) returns (SaveBordereauResponse);
+  rpc updateBordereau(UpdateBordereauRequest) returns (UpdateBordereauResponse);
+  rpc DeleteBordereau(DeleteBordereauRequest) returns (DeleteBordereauResponse);
+  rpc AddFactureToBordereau (AddFactureRequest) returns (AddFactureResponse);
+}
+
+message Bordereau {
+
+  int64 id=1;
+  string code=2;
+  string dateGeneration=3;
+  double montantTotal=4;
+  //repeated Consommation consommation=5;
+
+}
+
+
+message GetAllBordereauxRequest{}
+message GetAllBordereauxResponse{
+  repeated Bordereau bordereaux=1;
+}
+
+message GetBordereauByIdRequest{
+  int64 id=1;
+}
+message GetBordereauByIdResponse{
+  Bordereau bordereau=1;
+}
+
+message SaveBordereauRequest{
+  BordereauRequest bordereauRequest=1;
+}
+
+message BordereauRequest{
+  string code=1;
+  string dateGeneration=2;
+  string montantTotal=3;
+  //Consommation consommation=4;
+}
+
+
+message SaveBordereauResponse{
+  Bordereau bordereau=1;
+}
+
+message UpdateBordereauRequest {
+  Bordereau bordereau=1;
+}
+
+message UpdateBordereauResponse {
+  Bordereau bordereau=1;
+}
+
+message DeleteBordereauRequest {
+  int64 id = 1;
+}
+
+message DeleteBordereauResponse {
+}
+message AddFactureRequest {
+   int64 id = 1;
+ // Consommation consommation = 2;
+}
+
+message AddFactureResponse {
+}
+

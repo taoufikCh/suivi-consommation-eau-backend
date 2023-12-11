@@ -1,0 +1,37 @@
+syntax="proto3";
+option java_package="com.service.compteurgrpcclient.stub";
+service LocalService {
+  rpc getAllLocals(GetAllLocalsRequest) returns (GetAllLocalsResponse);
+  rpc getLocalById(GetLocalByIdRequest) returns (GetLocalByIdResponse);
+ }
+
+message Local {
+
+  int64 id=1;
+  string code=2;
+  string designation=3;
+  string adresse=4;
+  string longitude=5;
+  string latitude=6;
+  string image=7;
+  LocalStatus etat=8;
+}
+enum LocalStatus {
+  loue = 0;
+  ferme = 1;
+  proprietaire = 2;
+  en_reparation = 3;
+}
+
+message GetAllLocalsRequest{}
+message GetAllLocalsResponse{
+  repeated Local locals=1;
+}
+
+message GetLocalByIdRequest{
+  int64 id=1;
+}
+message GetLocalByIdResponse{
+  Local local=1;
+}
+

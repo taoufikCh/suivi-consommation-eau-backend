@@ -1,0 +1,98 @@
+syntax="proto3";
+import "Bordereau.proto";
+option java_package="com.service.consommationgrpcserver.stub";
+service ConsommationService {
+  rpc getAllConsommations(GetAllConsommationsRequest) returns (GetAllConsommationsResponse);
+  rpc getConsommationsByCompteur(GetConsommationsByCompteurRequest) returns (GetConsommationsByCompteurResponse);
+  rpc getConsommationById(GetConsommationByIdRequest) returns (GetConsommationByIdResponse);
+  rpc saveConsommation(SaveConsommationRequest) returns (SaveConsommationResponse);
+  rpc updateConsommation(UpdateConsommationRequest) returns (UpdateConsommationResponse);
+  rpc DeleteConsommation(DeleteConsommationRequest) returns (DeleteConsommationResponse);
+  rpc GetConsommationByCompteursAndPeriod(ConsommationFilterRequest) returns (ConsommationResponse);
+}
+
+message Consommation {
+
+  int64 id=1;
+  string refFacture=2;
+  double ancienIndex=3;
+  double nouveauIndex=4;
+  double quantite=5;
+  string dateDebut=6;
+  string dateFin=7;
+  double montant=8;
+  bool etatFacture=9;
+  string periode=10;
+  int64 compteurId=11;
+  Bordereau bordereau=12;
+
+
+
+}
+
+message GetAllConsommationsRequest{}
+message GetAllConsommationsResponse{
+  repeated Consommation consommations=1;
+}
+
+message GetConsommationsByCompteurRequest{
+  int64 compteurID=1;
+}
+message GetConsommationsByCompteurResponse{
+  repeated Consommation consommations=1;
+}
+
+
+
+message GetConsommationByIdRequest{
+  int64 id=1;
+}
+message GetConsommationByIdResponse{
+  Consommation consommation=1;
+}
+
+message SaveConsommationRequest{
+  ConsommationRequest consommationRequest=1;
+}
+
+message ConsommationRequest{
+  string refFacture=1;
+  double ancienIndex=2;
+  double nouveauIndex=3;
+  double quantite=4;
+  string dateDebut=5;
+  string dateFin=6;
+  double montant=7;
+  bool etatFacture=8;
+  string periode=9;
+  int64 compteurId=10;
+  Bordereau bordereau=11;
+}
+
+
+message SaveConsommationResponse{
+  Consommation consommation=1;
+}
+
+message UpdateConsommationRequest {
+  Consommation consommation=1;
+}
+
+message UpdateConsommationResponse {
+  Consommation consommation=1;
+}
+
+message DeleteConsommationRequest {
+  int64 id = 1;
+}
+
+message DeleteConsommationResponse {
+}
+message ConsommationFilterRequest {
+  repeated int64 compteurId = 1;
+  string dateDebut=2;
+  string dateFin=3;
+}
+message ConsommationResponse{
+  repeated Consommation consommations=1;
+}

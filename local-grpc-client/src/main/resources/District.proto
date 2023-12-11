@@ -1,0 +1,61 @@
+syntax="proto3";
+option java_package="com.service.localgrpcclient.stub";
+service DistrictService {
+  rpc getAllDistricts(GetAllDistrictsRequest) returns (GetAllDistrictsResponse);
+  rpc getDistrictById(GetDistrictByIdRequest) returns (GetDistrictByIdResponse);
+  rpc saveDistrict(SaveDistrictRequest) returns (SaveDistrictResponse);
+  rpc updateDistrict(UpdateDistrictRequest) returns (UpdateDistrictResponse);
+  rpc DeleteDistrict(DeleteDistrictRequest) returns (DeleteDistrictResponse);
+}
+
+message District {
+  int64 id=1;
+  string code=2;
+  string libille=3;
+  string description=4;
+
+}
+
+message GetAllDistrictsRequest{}
+message GetAllDistrictsResponse{
+  repeated District districts=1;
+}
+
+
+
+
+message GetDistrictByIdRequest{
+  int64 id=1;
+}
+message GetDistrictByIdResponse{
+  District district=1;
+}
+
+message SaveDistrictRequest{
+  DistrictRequest district=1;
+}
+
+message DistrictRequest {
+  string code=1;
+  string libille=2;
+  string description=3;
+}
+
+message SaveDistrictResponse{
+  District district=1;
+}
+
+message UpdateDistrictRequest {
+  District district=1;
+}
+
+message UpdateDistrictResponse {
+  District district=1;
+}
+
+message DeleteDistrictRequest {
+  int64 id = 1;
+}
+
+message DeleteDistrictResponse {
+}

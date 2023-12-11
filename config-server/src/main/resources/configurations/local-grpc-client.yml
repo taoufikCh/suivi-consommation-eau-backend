@@ -1,0 +1,31 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+server:
+  port: 8011
+spring:
+  application:
+    name: local-grpc-client
+grpc:
+  client:
+    localService:
+      address : static://localhost:9987
+      negotiation-type: plaintext
+#application:
+ # config:
+  #  students-url: http://localhost:8222/api/v1/students
+   # report-url: http://localhost:8222/api/v1/reports
+flickr:
+  apiKey: 73c00828ab075440607da2734ecf681e
+  apiSecret: 401212518497f548
+  appKey: 72157720902993759-f87240de6a7ffbfe
+  appSecret: e24d16c544bad40f
+management:
+  tracing:
+    sampling:
+      probability: 1.0

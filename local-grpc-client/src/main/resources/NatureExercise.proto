@@ -1,0 +1,55 @@
+syntax="proto3";
+option java_package="com.service.localgrpcclient.stub";
+service NatureExerciseService {
+  rpc getAllNatureExercises(GetAllNatureExercisesRequest) returns (GetAllNatureExercisesResponse);
+  rpc getNatureExerciseById(GetNatureExerciseByIdRequest) returns (GetNatureExerciseByIdResponse);
+  rpc saveNatureExercise(SaveNatureExerciseRequest) returns (SaveNatureExerciseResponse);
+  rpc updateNatureExercise(UpdateNatureExerciseRequest) returns (UpdateNatureExerciseResponse);
+  rpc DeleteNatureExercise(DeleteNatureExerciseRequest) returns (DeleteNatureExerciseResponse);
+}
+
+message NatureExercise {
+
+  int64 id=1;
+  string designation=2;
+
+}
+
+
+message GetAllNatureExercisesRequest{}
+message GetAllNatureExercisesResponse{
+  repeated NatureExercise natureExercises=1;
+}
+
+
+
+message GetNatureExerciseByIdRequest{
+  int64 id=1;
+}
+message GetNatureExerciseByIdResponse{
+  NatureExercise natureExercise=1;
+}
+
+message SaveNatureExerciseRequest{
+  string designation=1;
+}
+
+
+message SaveNatureExerciseResponse{
+  NatureExercise natureExercise=1;
+}
+
+message UpdateNatureExerciseRequest {
+  NatureExercise natureExercise=1;
+}
+
+message UpdateNatureExerciseResponse {
+  NatureExercise natureExercise=1;
+}
+
+message DeleteNatureExerciseRequest {
+  int64 id = 1;
+}
+
+message DeleteNatureExerciseResponse {
+}

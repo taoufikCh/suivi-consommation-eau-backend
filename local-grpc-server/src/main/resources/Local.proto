@@ -1,0 +1,109 @@
+syntax="proto3";
+import "NatureExercise.proto";
+import "TypeLocal.proto";
+import "Region.proto";
+option java_package="com.service.localgrpcserver.stub";
+service LocalService {
+  rpc getAllLocals(GetAllLocalsRequest) returns (GetAllLocalsResponse);
+  rpc getLocalsByRegion(GetLocalsByRegionRequest) returns (GetLocalsByRegionResponse);
+  rpc getLocalById(GetLocalByIdRequest) returns (GetLocalByIdResponse);
+  rpc saveLocal(SaveLocalRequest) returns (SaveLocalResponse);
+  rpc updateLocal(UpdateLocalRequest) returns (UpdateLocalResponse);
+  rpc DeleteLocal(DeleteLocalRequest) returns (DeleteLocalResponse);
+  rpc GetLocalsByFilters(FilterRequest) returns (LocalsResponse);
+}
+
+message Local {
+
+  int64 id=1;
+  string code=2;
+  string designation=3;
+  string adresse=4;
+  string longitude=5;
+  string latitude=6;
+  string image=7;
+  Region region=8;
+  LocalStatus etat=9;
+  NatureExercise nature_exercise = 10;
+  TypeLocal type_local = 11;
+}
+enum LocalStatus {
+  loue = 0;
+  ferme = 1;
+  proprietaire = 2;
+  en_reparation = 3;
+}
+
+message GetAllLocalsRequest{}
+message GetAllLocalsResponse{
+  repeated Local locals=1;
+}
+
+message GetLocalsByRegionRequest{
+  Region region=1;
+}
+message GetLocalsByRegionResponse{
+  repeated Local locals=1;
+}
+
+
+
+message GetLocalByIdRequest{
+  int64 id=1;
+}
+message GetLocalByIdResponse{
+  Local local=1;
+}
+
+message SaveLocalRequest{
+  string code=1;
+  string designation=2;
+  string adresse=3;
+  string longitude=4;
+  string latitude=5;
+  string image=6;
+  Region region=7;
+  LocalStatus etat=8;
+  NatureExercise nature_exercise = 9;
+  TypeLocal type_local = 10;
+}
+
+message LocalRequest {
+  string code=1;
+  string designation=2;
+  string adresse=3;
+  string longitude=4;
+  string latitude=5;
+  string image=6;
+  Region region=7;
+  LocalStatus etat=8;
+  NatureExercise nature_exercise = 9;
+  TypeLocal type_local = 10;
+}
+
+message SaveLocalResponse{
+  Local local=1;
+}
+
+message UpdateLocalRequest {
+  Local local=1;
+}
+
+message UpdateLocalResponse {
+  Local local=1;
+}
+
+message DeleteLocalRequest {
+  int64 id = 1;
+}
+
+message DeleteLocalResponse {
+}
+message FilterRequest {
+  Region region=1;
+  TypeLocal type_local = 2;
+  NatureExercise nature_exercise = 3;
+}
+message LocalsResponse {
+  repeated Local locals = 1;
+}
